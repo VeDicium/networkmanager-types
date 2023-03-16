@@ -6,12 +6,12 @@ export type ConnectionPath = string;
 /**
  * Connection settings.
  */
-export type ConnectionSettings = Array<any>;
+export type ConnectionSettings = Record<string, any>;
 
 /**
  * Connection secrets.
  */
-export type ConnectionSecrets = Array<any>;
+export type ConnectionSecrets = Record<string, any>;
 
 /**
  * Flags describing the current activation state (NMSettingsConnectionFlags).
