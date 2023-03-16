@@ -1,0 +1,33 @@
+name: Publish
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    name: Publish Node.js package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: npm run build
+
+      # Publish it to NPM.js first
+      - name: Publish to NPM.js
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Then, publish it also to GitHub
+      - name: Set GitHub @vedicium package registry
+        run: npm set //npm.pkg.github.com/:_authToken ${{ secrets.GH_NPM_TOKEN }}
+      - name: Publish to GitHub Registry
+        run: npm publish --access public --ignore-scripts --@vedicium:registry='https://npm.pkg.github.com'
+
