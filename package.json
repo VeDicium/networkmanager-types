@@ -1,6 +1,6 @@
 {
   "name": "@vedicium/networkmanager-types",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Types of NetworkManager, useable for Typescript projects",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -38,6 +38,6 @@
     "typescript": "^4.9.5"
   },
   "versionist": {
-    "publishedAt": "2023-03-16T10:07:22.359Z"
+    "publishedAt": "2023-03-16T15:11:18.866Z"
   }
 }
